@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class IWD
+public class Main
 {
     static class Interrupt
     {

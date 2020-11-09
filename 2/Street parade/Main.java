@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Parade
+public class Main
 {
     final static int SIZE = 2600;
 

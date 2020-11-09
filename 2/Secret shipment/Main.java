@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class SecretShipment
+public class Main
 {
 
     public static void main(String[] args) {
