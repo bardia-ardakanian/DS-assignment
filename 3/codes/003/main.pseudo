@@ -1,0 +1,103 @@
+node {
+    data
+    node left
+    node right
+}
+
+node root
+func inorder()
+{
+    if(root == NIL) return
+
+    stack s
+    node curr = root
+
+    while(curr != NIL || size(s) > 0) //n - all nodes
+    {
+        // Reach most left node of curr
+        while(curr != NIL)
+        {
+            s.push(curr)
+            curr = curr.left
+        }
+
+        curr = s.pop()
+        print(curr.data)
+        //right subtree
+        curr = curr.right
+    }
+}
+
+/*
+ * its actuall a*n - n*(subtree of curr)
+ * 1 + n(1 + 1 + 1 + 1) = 1 + 4*n
+ * O(n)
+ */
+
+func postOrder()  
+{ 
+    stack s
+        
+    if (root == NIL) return
+
+    s.push(root); 
+    Node prev = null; 
+    while (size(s) != 0) //n - each element get inserted
+    { 
+        Node curr = s.peek();                                                   
+
+        if (prev == NIL || prev.left == current || prev.right == current)       
+        { 
+            if (current.left != NIL)            
+                s.push(current.left); 
+            else if (current.right != NIL)     
+                s.push(current.right); 
+            else                                
+                print(s.pop().data)
+        }  
+        else if (current.left == prev)                                          
+        { 
+            if (current.right != NIL)           
+                s.push(current.right); 
+            else                                
+                print(s.pop().data)
+        }  
+        else if (current.right == prev)                                        
+            print(s.pop().data)
+
+        prev = current;                                                        
+    }
+} 
+
+/*
+ * the loop gets called untill all elements are pushed then popped from stack
+ * 1 + n*(1 + 3 + 2 + 2 + 1 + 1 + 2 + 1 + 1 + 1 + 1) = 1 + 16n
+ * O(n)
+ */
+
+func preorder() 
+{ 
+    if (root == NIL) return
+
+    stack s
+    s.push(root)                            
+
+    while (size(s) != 0) // n - each element get inserted to stack and get poped once
+    { 
+        node newNode = s.peek();            
+        print(newNode.data)                 
+        s.pop();                            
+
+        if (newNode.right != NIL) {         
+            s.push(newNode.right); 
+        } 
+        if (newNode.left != NIL) {          
+            s.push(newNode.left); 
+        } 
+    } 
+} 
+
+/*
+ * 1 + n*(1 + 1 + 1 + 1 + 1 + 1 + 1 + 1) = 1 + 8n
+ * O(n)
+ */

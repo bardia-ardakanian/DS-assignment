@@ -1,0 +1,22 @@
+node 
+{ 
+    data
+    Node left 
+    node right
+} 
+
+node root
+//initialize min and max based on your code
+//or use a function to find it whatever
+boolean isBST(node, min, max)
+{
+    if (root == NIL) return tree
+
+    if (node.data < min || node.data > max) return false
+
+    return isBST(node.next, min, node.data-1) 
+                && isBST(node.right, node.data+1)
+}
+
+//this function is on O(n) order of growth
+//official call uses root as node, maximum input as max, minimum input as min

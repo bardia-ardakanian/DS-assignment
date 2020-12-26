@@ -1,0 +1,29 @@
+node {
+    data
+    node left
+    node right
+}
+
+//Find inorder and preorder traversals of tree, store them in two auxiliary arrays inT[] and preT[].
+//Find inorder and preorder traversals of subtree, store them in two auxiliary arrays inS[] and preS[].
+//If inS[] is a subarray of inT[] and preS[] is a subarray preT[], then S is a subtree of T. Else not.
+func is_subtree(node tree, node subtree)
+{
+    int inT[] = tree.inorder()
+    int preT[] = tree.preOrder()
+
+    int inS[] = subtree.inorder()
+    int preS[] = subtree.preOrder()
+
+    if (inS.subArray(inT) && preS.subArray(preS)) {
+        return true
+    }
+
+    return false
+}
+
+//inorder and preOrder of a tree are O(n)
+//is_subtree calls each function twice for two different trees
+//we assume size of tree & subtree are n & m
+//so we have order of growth n + n + m + m = 2(m + n)
+//the function is from O(n+m) order of growth
