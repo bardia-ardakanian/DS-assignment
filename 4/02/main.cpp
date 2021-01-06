@@ -6,27 +6,6 @@
 #include<utility>
 using namespace std;
 
-// string generateKey(int x, int y, int nx, int ny)
-// {
-//     string res = "";
-//     // N, E
-//     if(nx > x || ny > y)
-//     {
-//         res.append(to_string(x));
-//         res.append(to_string(y));
-//         res.append(to_string(nx));
-//         res.append(to_string(ny));
-//     }
-//     else
-//     {
-//         res.append(to_string(nx));
-//         res.append(to_string(ny));
-//         res.append(to_string(x));
-//         res.append(to_string(y));
-//     }
-//     return res;
-// }
-
 pair<pair<int, int>, pair<int, int>> makePair(int x, int y, int nx, int ny)
 {
     pair<pair<int, int>, pair<int, int>> key;
@@ -63,7 +42,6 @@ int main()
             char c = path[j];
             if (c == 'N')
             {
-                // string key = generateKey(x, y, x, y+1);
                 pair<pair<int, int>, pair<int, int>> key = makePair(x, y, x, y+1);
                 if (!hashMap[key])
                 {
@@ -78,7 +56,6 @@ int main()
             }
             else if (c == 'S')
             {
-                // string key = generateKey(x, y, x, y-1);
                 pair<pair<int, int>, pair<int, int>> key = makePair(x, y, x, y-1);
                 if (!hashMap[key])
                 {
@@ -93,7 +70,6 @@ int main()
             }
             else if (c == 'E')
             {
-                // string key = generateKey(x, y, x+1, y);
                 pair<pair<int, int>, pair<int, int>> key = makePair(x, y, x+1, y);
                 if (!hashMap[key])
                 {
@@ -108,7 +84,6 @@ int main()
             }
             else if (c == 'W')
             {
-                // string key = generateKey(x, y, x-1, y);
                 pair<pair<int, int>, pair<int, int>> key = makePair(x, y, x-1, y);
                 if (!hashMap[key])
                 {
@@ -122,10 +97,6 @@ int main()
                 x--;
             }
         }
-
-        // for (const auto& x : hashMap) {
-        //     std::cout << x.first << ": " << x.second << "\n";
-        // }
         cout << time << '\n';
     }
     
