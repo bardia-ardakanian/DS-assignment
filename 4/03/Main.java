@@ -15,15 +15,7 @@ public class Main {
                 result = temp;
             }
         }
-        else if (x-1 >= 0 && matrix[x][y] + 1 == matrix[x-1][y])
-        {
-            int temp = 1 + findPath(row, column, matrix, x-1, y);
-            if (temp > result)
-            {
-                result = temp;
-            }
-        }
-        else if (y+1 < column && matrix[x][y] + 1 == matrix[x][y+1])
+        if (y+1 < column && matrix[x][y] + 1 == matrix[x][y+1])
         {
             int temp = 1 + findPath(row, column, matrix, x, y+1);
             if (temp > result)
@@ -31,7 +23,15 @@ public class Main {
                 result = temp;
             }
         }
-        else if (y-1 >= 0 && matrix[x][y] + 1 == matrix[x][y-1])
+        if (x-1 >= 0 && matrix[x][y] + 1 == matrix[x-1][y])
+        {
+            int temp = 1 + findPath(row, column, matrix, x-1, y);
+            if (temp > result)
+            {
+                result = temp;
+            }
+        }
+        if (y-1 >= 0 && matrix[x][y] + 1 == matrix[x][y-1])
         {
             int temp = 1 + findPath(row, column, matrix, x, y-1);
             if (temp > result)
@@ -39,7 +39,7 @@ public class Main {
                 result = temp;
             }
         }
-        else if (x+1 < row && y+1 < column && matrix[x][y] + 1 == matrix[x+1][y+1])
+        if (x+1 < row && y+1 < column && matrix[x][y] + 1 == matrix[x+1][y+1])
         {
             int temp = 1 + findPath(row, column, matrix, x+1, y+1);
             if (temp > result)
@@ -47,15 +47,7 @@ public class Main {
                 result = temp;
             }
         }
-        else if (x+1 < row && y-1 >= 0 && matrix[x][y] + 1 == matrix[x+1][y-1])
-        {
-            int temp = 1 + findPath(row, column, matrix, x+1, y-1);
-            if (temp > result)
-            {
-                result = temp;
-            }
-        }
-        else if (x-1 >= 0 && y+1 < column && matrix[x][y] + 1 == matrix[x-1][y+1])
+        if (x-1 >= 0 && y+1 < column && matrix[x][y] + 1 == matrix[x-1][y+1])
         {
             int temp = 1 + findPath(row, column, matrix, x-1, y+1);
             if (temp > result)
@@ -63,7 +55,15 @@ public class Main {
                 result = temp;
             }
         }
-        else if (x-1 >= 0 && y-1 >= 0 && matrix[x][y] + 1 == matrix[x-1][y-1])
+        if (x+1 < row && y-1 >= 0 && matrix[x][y] + 1 == matrix[x+1][y-1])
+        {
+            int temp = 1 + findPath(row, column, matrix, x+1, y-1);
+            if (temp > result)
+            {
+                result = temp;
+            }
+        }
+        if (x-1 >= 0 && y-1 >= 0 && matrix[x][y] + 1 == matrix[x-1][y-1])
         {
             int temp = 1 + findPath(row, column, matrix, x-1, y-1);
             if (temp > result)
