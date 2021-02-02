@@ -1,5 +1,7 @@
 package com.company;
 
+import static com.company.Dijkstra.shortestPath;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,5 +15,7 @@ public class Main {
         graph.addEdge(10, 15, 25);
 
         System.out.println(graph.toString());
+
+        shortestPath(graph, 35, 10);
     }
 }

@@ -74,6 +74,10 @@ public class MinHeap {
         System.out.println(position.toString());
     }
 
+    public boolean isEmpty(){
+        return nodes.size() > 0;
+    }
+
     private void heapify(int i){
         int left = i * 2 + 1, right = i * 2 + 2, smaller = i;
 

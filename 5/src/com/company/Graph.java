@@ -44,4 +44,16 @@ public class Graph {
 
         return (builder.toString());
     }
+
+    public Node getNode(int key){
+        if (!keys.contains(key)) return null;
+
+        int index = keys.indexOf(key);
+        return vertices.get(index);
+    }
+
+
+    public ArrayList<Node> getVertices() {
+        return vertices;
+    }
 }
