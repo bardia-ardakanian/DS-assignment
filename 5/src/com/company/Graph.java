@@ -4,23 +4,23 @@ import java.util.*;
 
 public class Graph{
 
-    private List<Edge> edges;
-    private Map<Integer, Vertex> vertices;
+    private final List<Edge> edges;
+    private final Map<Integer, Vertex> vertices;
 
     public Graph(){
         edges = new ArrayList<>();
         vertices = new HashMap<>();
     }
 
-    public void addEdge(int key1, int key2, int weight){
-        Vertex head = null;
+    public void addEdge(int key1, int key2, float length){
+        Vertex head;
         if(vertices.containsKey(key1)){
             head = vertices.get(key1);
         }else{
             head = new Vertex(key1);
             vertices.put(key1, head);
         }
-        Vertex tail = null;
+        Vertex tail;
         if(vertices.containsKey(key2)){
             tail = vertices.get(key2);
         }else{
@@ -28,7 +28,7 @@ public class Graph{
             vertices.put(key2, tail);
         }
 
-        Edge edge = new Edge(head,tail,weight);
+        Edge edge = new Edge(head,tail,length);
         edges.add(edge);
         head.addEdge(edge, tail);
         tail.addEdge(edge, head);

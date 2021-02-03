@@ -10,10 +10,10 @@ public class MinHeap {
     private final Map<Vertex,Integer> position = new HashMap<>();
 
     public static class Node {
-        int weight;
+        float weight;
         Vertex key;
 
-        public Node(int weight, Vertex key){
+        public Node(float weight, Vertex key){
             this.weight = weight;
             this.key = key;
         }
@@ -48,7 +48,7 @@ public class MinHeap {
         }
     }
     
-    public void decreaseKey(Vertex data, int newWeight){
+    public void decreaseKey(Vertex data, float newWeight){
         int curr = position.get(data);
         nodes.get(curr).weight = newWeight;
         int parent = (curr - 1) / 2;
@@ -62,7 +62,7 @@ public class MinHeap {
         }
     }
 
-    public int getWeight(Vertex key) {
+    public float getWeight(Vertex key) {
         if(!position.containsKey(key)) return -1;
         return nodes.get(position.get(key)).weight;
     }
@@ -74,7 +74,7 @@ public class MinHeap {
         nodes.get(0).weight = nodes.get(size).weight;
         nodes.get(0).key = nodes.get(size).key;
         position.remove(root.key);
-        position.remove(nodes.get(0));
+        position.remove(nodes.get(0).key);
         position.put(nodes.get(0).key, 0);
         nodes.remove(size);
 
@@ -104,7 +104,7 @@ public class MinHeap {
     }
 
     private void swap(Node a,Node b){
-        int wTemp = a.weight;
+        float wTemp = a.weight;
         Vertex vTemp = a.key;
 
         a.weight = b.weight;

@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class Dijkstra {
 
-    public PathDetail sssp(Graph graph, Vertex sourceVertex){
+    public static Response sssp(Graph graph, Vertex sourceVertex){
 
         MinHeap heap = new MinHeap();
-        Map<Vertex,Integer> distance = new HashMap<>();
+        Map<Vertex,Float> distance = new HashMap<>();
         Map<Vertex, Vertex> parent = new HashMap<>();
 
         for(Vertex vertex : graph.getVertices()){
@@ -16,7 +16,7 @@ public class Dijkstra {
         }
 
         heap.decreaseKey(sourceVertex, 0);
-        distance.put(sourceVertex, 0);
+        distance.put(sourceVertex, (float) 0);
         parent.put(sourceVertex, null);
 
         while(!heap.isEmpty()){
@@ -32,8 +32,8 @@ public class Dijkstra {
                     continue;
                 }
 
-                int weight = edge.getWeight();
-                int newDist = distance.get(head) + weight;
+                float length = edge.getLength();
+                float newDist = distance.get(head) + length;
 
                 if(heap.getWeight(tail) > newDist) {
                     heap.decreaseKey(tail, newDist);
@@ -41,6 +41,6 @@ public class Dijkstra {
                 }
             }
         }
-        return new PathDetail(distance, parent);
+        return new Response(distance, parent);
     }
 }

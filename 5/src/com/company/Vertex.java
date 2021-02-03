@@ -3,9 +3,9 @@ package com.company;
 import java.util.ArrayList;
 
 public class Vertex {
-    private Integer key;
-    private ArrayList<Edge> edges;
-    private ArrayList<Vertex> adjList;
+    private final Integer key;
+    private final ArrayList<Edge> edges;
+    private final ArrayList<Vertex> adjList;
 
     Vertex(int key) {
         this.key = key;
@@ -18,12 +18,13 @@ public class Vertex {
         adjList.add(v);
     }
 
-    public Integer getKey() {
-        return key;
+    public Edge getEdge(Vertex key) {
+        if (!adjList.contains(key)) return null;
+        return edges.get(adjList.indexOf(key));
     }
 
-    public ArrayList<Vertex> getAdjList() {
-        return adjList;
+    public Integer getKey() {
+        return key;
     }
 
     public ArrayList<Edge> getEdges() {
