@@ -2,58 +2,53 @@ package com.company;
 
 import java.util.*;
 
-public class Graph {
+public class Graph{
 
-    private ArrayList<Integer> keys;
-    private ArrayList<Node> vertices;
+    private List<Edge> edges;
+    private Map<Integer, Vertex> vertices;
 
     public Graph(){
-        keys = new ArrayList<>();
-        vertices = new ArrayList<>();
+        edges = new ArrayList<>();
+        vertices = new HashMap<>();
     }
 
-    public void addEdge(int source, int destination, int weight){
-        if (!keys.contains(source)) {
-            keys.add(source);
-            vertices.add(new Node(weight, source));
+    public void addEdge(int key1, int key2, int weight){
+        Vertex head = null;
+        if(vertices.containsKey(key1)){
+            head = vertices.get(key1);
+        }else{
+            head = new Vertex(key1);
+            vertices.put(key1, head);
         }
-        if (!keys.contains(destination)) {
-            keys.add(destination);
-            vertices.add(new Node(weight, destination));
+        Vertex tail = null;
+        if(vertices.containsKey(key2)){
+            tail = vertices.get(key2);
+        }else{
+            tail = new Vertex(key2);
+            vertices.put(key2, tail);
         }
 
-        //System.out.println("vertices: " + vertices.toString() + "\nkeys: " + keys.toString());
-        int srcIndex = keys.indexOf(source), destIndex = keys.indexOf(destination);
-        //System.out.println(srcIndex + " " + destIndex);
-        vertices.get(srcIndex).addEdge(vertices.get(destIndex));
-        vertices.get(destIndex).addEdge(vertices.get(srcIndex));
+        Edge edge = new Edge(head,tail,weight);
+        edges.add(edge);
+        head.addEdge(edge, tail);
+        tail.addEdge(edge, head);
+    }
+
+    public Vertex getVertex(int key){
+        return vertices.get(key);
+    }
+
+    public Collection<Vertex> getVertices() {
+        return vertices.values();
     }
 
     @Override
-    public String toString()
-    {
-        StringBuilder builder = new StringBuilder();
-
-        for (Node n : vertices){
-            builder.append(n.toString() + "->");
-            for (Node e : n.getAdjList()){
-                builder.append(e.toString() + "->");
-            }
-            builder.append("NULL\n");
-        }
-
-        return (builder.toString());
-    }
-
-    public Node getNode(int key){
-        if (!keys.contains(key)) return null;
-
-        int index = keys.indexOf(key);
-        return vertices.get(index);
-    }
-
-
-    public ArrayList<Node> getVertices() {
-        return vertices;
+    public String toString() {
+        return "Graph{" +
+                "\nedges=" + edges.toString() +
+                "\nvertices=" + vertices.toString() +
+                "\n}";
     }
 }
+
+
