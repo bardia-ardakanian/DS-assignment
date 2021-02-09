@@ -4,12 +4,12 @@ import static com.company.Dijkstra.sssp;
 
 public class Request {
 
-    private final float time;
+    private final int time;
     private final int sourceKey;
     private final int destinationKey;
     private Response response;
 
-    public Request(float time, int sourceKey, int destinationKey){
+    public Request(int time, int sourceKey, int destinationKey){
         this.time = time;
         this.sourceKey = sourceKey;
         this.destinationKey  = destinationKey;
@@ -31,7 +31,7 @@ public class Request {
         return response.getTime();
     }
 
-    public boolean isDone(float time){
+    public boolean isDone(int time){
         return this.time < time;
     }
 
