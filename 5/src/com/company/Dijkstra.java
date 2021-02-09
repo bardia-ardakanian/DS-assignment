@@ -32,7 +32,7 @@ public class Dijkstra {
                     continue;
                 }
 
-                float length = edge.getLength();
+                float length = edge.getWeight();
                 float newDist = distance.get(head) + length;
 
                 if(heap.getWeight(tail) > newDist) {

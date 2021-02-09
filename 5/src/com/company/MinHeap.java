@@ -95,7 +95,9 @@ public class MinHeap {
         if(left >= nodes.size()) return;
 
         if(right >= nodes.size()) right = left;
+
         smaller = nodes.get(left).weight <= nodes.get(right).weight ? left : right;
+
         if(nodes.get(i).weight > nodes.get(smaller).weight){
             swap(nodes.get(i), nodes.get(smaller));
             updatePositionMap(nodes.get(i).key,i, nodes.get(smaller).key, smaller);

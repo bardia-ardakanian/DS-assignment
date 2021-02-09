@@ -8,15 +8,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final HashMap<Integer, Pair> start = new HashMap<>();
-    private static final HashMap<Integer, Pair> end = new HashMap<>();
+    private static final HashMap<Float, Pair> start = new HashMap<>();
+    private static final HashMap<Float, Pair> end = new HashMap<>();
     private static int activeRequests = 0;
 
     public static class Pair{
-        int key;
+        float key;
         ArrayList<Request> requests = new ArrayList<>();
 
-        public Pair(int key){
+        public Pair(float key){
             this.key = key;
         }
 
@@ -56,7 +56,7 @@ public class Main {
      */
     public static void getGraph(Graph graph) throws FileNotFoundException {
         int n, m;
-        File in = new File("Maps\\1\\m1.txt");
+        File in = new File("Maps\\2\\m2.txt");
         Scanner sc = new Scanner(in);
 
         n = sc.nextInt(); m = sc.nextInt();
@@ -82,11 +82,12 @@ public class Main {
      * @throws FileNotFoundException testcase not found
      */
     public static void getRequest() throws FileNotFoundException {
-        File in = new File("Maps\\1\\test.txt");
+        File in = new File("Maps\\2\\test.txt");
         Scanner sc = new Scanner(in);
-        int maxTime = 0;
+        float maxTime = 0;
         while (sc.hasNext()) {
-            int time = sc.nextInt(), key1 = sc.nextInt(), key2 = sc.nextInt();
+            float time = sc.nextInt();
+            int key1 = sc.nextInt(), key2 = sc.nextInt();
             if (maxTime < time) maxTime = time;
             Request request = new Request(time, key1, key2);
 
@@ -107,13 +108,13 @@ public class Main {
      * get response for active requests
      */
     public static void getResponse(Graph graph){
-        int i = 0;
+        float i = 0;
         while (activeRequests > 0){
             if (start.containsKey(i)){
                 for (Request r : start.get(i).requests){
                     r.catchResponse(graph);
 
-                    int arrivingTime = (int) r.getEnd() + 1;
+                    float arrivingTime = r.getEnd() + 1;
                     if (!end.containsKey(arrivingTime)){
                         Pair pair = new Pair(arrivingTime);
                         pair.addRequest(r);
